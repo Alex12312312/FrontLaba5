@@ -11,3 +11,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#headerField{
+  background-color: rgb(16, 16, 94);
+  display: flex;
+  margin-bottom: 20px;
+  height: 70px;
+  width: 100%;
+  flex-direction: row;
+  align-content: space-around;
+  justify-content: center;
+}
+
+.headerButton{
+  color:white;
+  background-color: rgb(16, 16, 94);
+  display: flex;
+  height: 100%;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerButton:hover{
+  color:rgb(16, 16, 94);
+  background-color: white;
+  transition: 1s;
+  cursor: pointer;
+}
+
+#AuthPage{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: baseline;
+}
+
+#dataField{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+#EnterButton{
+  margin-left: 30px;
+  margin-top: 15px;
+  margin-right: 30px;
+  width: 50px;
+  height: 25px;
+}
+
+#UniverName{
+  margin-top: 15px;
+  margin-left: 10px;
+  color:white;
+}
+
+.RegBlock{
+  display: flex;
+  flex-direction: column;
+}
+
+.RegField{
+  width: 200px;
+  margin: 10px;
+}

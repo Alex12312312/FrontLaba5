@@ -7,11 +7,16 @@ import SiteBody from "./Components/MainBody"
 import SiteHead from "./Components/SiteHead"
 import RegPage from "./Components/RegPage"
 import Profile from "./Components/Profile"
-import { AuthContext } from "./Util/AuthContext";
+import { AuthContext, SessionID } from "./Util/AuthContext";
 
 function App(){
 const [isAuth, setAuthStatus] = useState(false)
+const [SessionId, setSessionId] = useState(null)
   return(
+  <SessionID.Provider value={{
+    SessionId,
+    setSessionId
+  }}>
   <AuthContext.Provider value={{
       isAuth,
       setAuthStatus
@@ -26,7 +31,8 @@ const [isAuth, setAuthStatus] = useState(false)
     <Route path="*" element={<Navigate to={{pathname:"/"}}/>}/>
     </Routes>
       </BrowserRouter>
-      </AuthContext.Provider>)
+      </AuthContext.Provider>
+      </SessionID.Provider>)
         }
 
 export default App;

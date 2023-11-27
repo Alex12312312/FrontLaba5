@@ -1,32 +1,34 @@
 import React, { useContext, useState } from "react";
 import styles from '../index.css'
-import checkEnter from '../scripts/checkEnter'
 import { AuthContext } from "../Util/AuthContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 function Authpage(){
     const {AuthStatus, setAuthStatus} = useContext(AuthContext)
     const [loginValue, setLogin] = useState('')
     const [passwordValue, setPassword] = useState('')
     const [errMsg, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
       e.preventDefault();
-      try {
-        const response = await axios.post('/user/login', {loginValue, passwordValue})
+      axios
+        .get("http://localhost:8080/user/login", {params: {
+          login:loginValue,
+          password:passwordValue}})
         .then((response) =>{
-          response.event.preventDefault()
-          setAuthStatus(true);
-          <Navigate to={{pathname:"/"}}/>
-      });
-        console.log(response.data);
-      } catch (error) {
-        setError(error);
-      }
+            setAuthStatus(true);
+            navigate("/")
+        })
+        .catch((error) =>{
+            setError(error)
+        })
     };
 
     return(
+      (!AuthStatus)?
         <div id="AuthPage" style={styles.Authpage}>
+        <div id="AuthBlock">
         <div id="dataFields">
         <div className="authField" id="loginField" style={styles.headerButton}>
           <input placeholder="Login" onChange={val => setLogin(val.target.value)}/></div>
@@ -38,6 +40,7 @@ function Authpage(){
         }>Войти</button>
         <div id="ErrorField">{errMsg.message}</div>
         </div>
+        </div>:<Navigate to={{pathname:"/"}}/>
     )
   }
 

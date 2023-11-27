@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+#root{
+  background-image: url("https://catherineasquithgallery.com/uploads/posts/2021-02/1612793988_125-p-goluboi-grafichnii-fon-168.jpg");
+  height: 98lvh;
+}
+
 #headerField{
   background-color: rgb(16, 16, 94);
   display: flex;
@@ -40,12 +45,37 @@ code {
   cursor: pointer;
 }
 
+#AuthBlock{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-content: baseline;
+  height: 100%;
+  background-color: rgb(255, 255, 255, 0.4);
+  width: 25%;
+}
+
 #AuthPage{
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
   align-content: baseline;
+  height: 300px;
+  width: 100%;
 }
+
+#EnterButton{
+  background-color: rgb(16, 16, 94, 0.4);
+  color:white;
+}
+
+#EnterButton:hover{
+  background-color: rgb(16, 16, 94, 1);
+  cursor: pointer;
+}
+
 
 #dataField{
   display: flex;
@@ -76,4 +106,60 @@ code {
 .RegField{
   width: 200px;
   margin: 10px;
+}
+
+.ProfilePage{
+  
+}
+
+#mainBody{
+  margin-left: 20px;
+}
+
+.descTextPlace{
+  position: relative;
+  color: white;
+  bottom: 30px;
+  left: 10px;
+}
+
+.slideImg{
+  width: 400px;
+  height: 250px;
+}
+
+#slides{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.slideItem{
+  margin: 10px;
+}
+
+.slideItem:hover{
+  cursor: pointer;
+}
+
+.FakeButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 250px;
+  margin: 10px;
+  border-radius: 25% 10%;
+  background-color: rgb(16, 16, 94, 0.4);
+}
+
+.FakeButtonText{
+  color:white
+}
+
+.FakeButton:hover{
+  cursor: pointer;
+  transition: 1s;
+  background-color: rgb(16, 16, 94, 1);
 }

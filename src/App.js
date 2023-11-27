@@ -20,7 +20,7 @@ const [isAuth, setAuthStatus] = useState(false)
     <SiteHead/>
     <Routes>
     <Route exact path="/" element={<SiteBody/>}/>
-    <Route path="/login" element={<Authpage/>}/>
+    <Route path="/loginPage" element={<Authpage/>}/>
     <Route path="/reg" element={<RegPage/>}/>
     <Route path="/lk" element={<Profile/>}/>
     <Route path="*" element={<Navigate to={{pathname:"/"}}/>}/>

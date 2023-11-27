@@ -18,11 +18,11 @@ function RegPage(){
     const getLogin = (e) =>{
         setLogin(e.target.value)
     }
-    const req = ()=>{
+    const req = (e)=>{
+        e.preventDefault()
         axios
-        .get("/registration")
+        .get("/user/registration")
         .then((response) =>{
-            response.event.preventDefault()
             setAuthStatus(true);
             <Navigate to={{pathname:"/"}}/>
         })
@@ -32,11 +32,11 @@ function RegPage(){
     }
     return(
     <form className="RegBlock">
-        <input className="RegField" id={"LoginField"} placeholder={"Login"} onChange={getLogin}/>
-        <input className="RegField" id={"PasswordField"} placeholder={"Password"} onChange={getPass}/>
-        <input className="RegField" id={"InputField"} placeholder={"Email"} onChange={getEmail}/>
+        <input className="RegField" id={"LoginField"} placeholder={"Login"} onChange={val => getLogin(val)}/>
+        <input className="RegField" id={"PasswordField"} placeholder={"Password"} onChange={val => getPass(val)}/>
+        <input className="RegField" id={"InputField"} placeholder={"Email"} onChange={val => getEmail(val)}/>
         <p>{errMsg.message}</p>
-        <button className="RegField" onClick={req}>Зарегистрироваться</button>
+        <button className="RegField" onClick={(e) => req(e)}>Зарегистрироваться</button>
         {isAuth?<Navigate to={{pathname:"/"}}/>:null}
     </form>)
 }

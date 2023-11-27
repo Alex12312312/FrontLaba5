@@ -42,7 +42,7 @@ code {
 
 #AuthPage{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-content: baseline;
 }

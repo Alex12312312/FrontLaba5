@@ -28,6 +28,7 @@ const [SessionId, setSessionId] = useState(null)
     <Route path="/loginPage" element={<Authpage/>}/>
     <Route path="/reg" element={<RegPage/>}/>
     <Route path="/lk" element={<Profile/>}/>
+    <Route path="/newsPage" element={<Profile/>}/>
     <Route path="*" element={<Navigate to={{pathname:"/"}}/>}/>
     </Routes>
       </BrowserRouter>

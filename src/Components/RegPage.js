@@ -1,14 +1,21 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Util/AuthContext";
 
 function RegPage(){
     const {isAuth, setAuthStatus} = useContext(AuthContext)
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [login, setLogin] = useState('');
+    const [emailValue, setEmail] = useState('');
+    const [passwordValue, setPassword] = useState('');
+    const [loginValue, setLogin] = useState('');
     const [errMsg, setError] = useState('');
+    const navigate = useNavigate();
+    var newUserData = {
+        "login": loginValue,
+        "password": passwordValue,
+        "email": emailValue,
+        "role": "1"
+    }
     const getEmail = (e) =>{
         setEmail(e.target.value)
     }
@@ -20,11 +27,15 @@ function RegPage(){
     }
     const req = (e)=>{
         e.preventDefault()
-        axios
-        .get("http://localhost:50485/user/registration")
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/user/registration',
+            data: newUserData
+            
+        })
         .then((response) =>{
             setAuthStatus(true);
-            <Navigate to={{pathname:"/"}}/>
+            navigate("/")
         })
         .catch((error) =>{
             setError(error)

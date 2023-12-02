@@ -11,10 +11,10 @@ function RegPage(){
     const [errMsg, setError] = useState('');
     const navigate = useNavigate();
     var newUserData = {
-        "login": loginValue,
-        "password": passwordValue,
-        "email": emailValue,
-        "role": "1"
+        login: loginValue,
+        password: passwordValue,
+        email: emailValue,
+        role: "1"
     }
     const getEmail = (e) =>{
         setEmail(e.target.value)
@@ -31,7 +31,6 @@ function RegPage(){
             method: 'post',
             url: 'http://localhost:8080/user/registration',
             data: newUserData
-            
         })
         .then((response) =>{
             setAuthStatus(true);

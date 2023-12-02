@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import styles from '../index.css'
-import { AuthContext } from "../Util/AuthContext";
+import { AuthContext, SessionID } from "../Util/AuthContext";
 import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 function Authpage(){
     const {AuthStatus, setAuthStatus} = useContext(AuthContext)
+    const {SessionId, setSessionId} = useContext(SessionID)
     const [loginValue, setLogin] = useState('')
     const [passwordValue, setPassword] = useState('')
     const [errMsg, setError] = useState('');
@@ -17,6 +18,7 @@ function Authpage(){
           login:loginValue,
           password:passwordValue}})
         .then((response) =>{
+            localStorage.session_id = response.data
             setAuthStatus(true);
             navigate("/")
         })
@@ -40,7 +42,7 @@ function Authpage(){
         }>Войти</button>
         <div id="ErrorField">{errMsg.message}</div>
         </div>
-        </div>:<Navigate to={{pathname:"/"}}/>
+        </div>:navigate("/")
     )
   }
 

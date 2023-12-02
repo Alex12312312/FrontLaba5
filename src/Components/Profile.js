@@ -10,6 +10,7 @@ function Profile(){
     const [visitCount, setVisitCount] = useState(0)
     const [userStatus, setUserStatus] = useState("")
     const [lastValue, setLastValue] = useState("")
+    const [selectedImage, setSelectedImage] = useState(null)
     const req = async(e) =>{
         axios
         .get("http://localhost:8080/user/info", {headers: {
@@ -36,15 +37,33 @@ function Profile(){
         .then((response)=>{
         })
     }
-    courses()
+    const handleImageUpload = (event) =>{
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const base64 = e.target.result;
+      setSelectedImage(base64);
+    };
+
+    reader.readAsDataURL(file);
+    const uploadImage = () => {
+        axios
+        .post("http://localhost:8080/course/user", {headers:{
+            Authorization: localStorage.session_id,
+        }, data:{
+            file: selectedImage
+        }})
+  };
+
+    }
     return(
     <div id="ProfilePage" style={styles.ProfilePage}>
     <div id="lkPage">Добро пожаловать, {loginValue}</div>
     <div id="UserCart">
     <div id="ImagePlace">
     <img className='ProfileImage' src={imageItem}></img>
-    <div id="ChangeImage">Сменить изображение</div>
-    <input type="file" id="ChangeImageArea"/>
+    <input type="file" id="ChangeImageArea" onChange={handleImageUpload}/>
     </div>
     <div id="DataPlace">
         <div>Количество посещений: {visitCount}</div>

@@ -35,28 +35,34 @@ function Profile(){
             user_id: localStorage.user_id
         }})
         .then((response)=>{
+            
         })
     }
+    courses()
     const handleImageUpload = (event) =>{
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = (e) => {
-      const base64 = e.target.result;
+      const base64 = reader.result;
       setSelectedImage(base64);
     };
 
     reader.readAsDataURL(file);
     const uploadImage = () => {
         axios
-        .post("http://localhost:8080/course/user", {headers:{
+        .post("http://localhost:8080/user/avatar", {headers:{
             Authorization: localStorage.session_id,
         }, data:{
             file: selectedImage
         }})
+        .then((response) =>{
+            console.log(response)
+        })
   };
-
+  uploadImage()
     }
+
     return(
     <div id="ProfilePage" style={styles.ProfilePage}>
     <div id="lkPage">Добро пожаловать, {loginValue}</div>

@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 function SiteHead(){
     const {isAuth, setAuthStatus} = useContext(AuthContext)
     const navigate = useNavigate()
-    console.log(localStorage.session_id)
     return(<div id="headerField" style={styles.headerField}>
     <Link to="/" id="UniverName">Университетский Государственный Университет</Link>
     {!isAuth?<><Link to="/loginPage" className="headerButton" id="authPage" style={styles.headerButton}>Авторизация</Link>

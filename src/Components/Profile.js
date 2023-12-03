@@ -43,27 +43,24 @@ function Profile(){
         fetchData();
       }, []);
     const handleImageUpload = (event) =>{
-    console.log(event.target.file)
     const file = event.target.files[0];
     const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const base64 = e.target.result;
-      setSelectedImage(btoa(base64));
-    };
-
-    reader.readAsBinaryString(file);
-    const uploadImage = () => {axios.post("http://localhost:8080/user/avatar", {headers:{
+    reader.readAsDataURL(file);
+    const uploadImage = (element) => {axios.post("http://localhost:8080/user/avatar", {headers:{
             Authorization: localStorage.session_id,
         }, data:{
-            file: selectedImage
+            file: element
         }})
         .then((response) =>{
             console.log(response.status)
         }
         )
     }
-    uploadImage();
+    reader.onload = () => {
+        const base64 = reader.result;
+        setSelectedImage(base64)
+        uploadImage(base64);;
+      };
   };
     return(
     <div id="ProfilePage" style={styles.ProfilePage}>
@@ -71,7 +68,7 @@ function Profile(){
     <div id="UserCart">
     <div id="ImagePlace">
     <img className='ProfileImage' src={imageItem}></img>
-    <input type="file" id="ChangeImageArea" onChange={(e) => handleImageUpload(e)}/>
+    <input type="file" id="ChangeImageArea" onChange={(e) => {handleImageUpload(e)}}/>
     </div>
     <div id="DataPlace">
         <div>Количество посещений: {visitCount}</div>

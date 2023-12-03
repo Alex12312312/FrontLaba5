@@ -232,7 +232,11 @@ code {
 
 .CourseItem{
   height: 75px;
-  
+  color: white;
+  background-color: rgb(16, 16, 94);
+  width: 300px;
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-direction: row;
 }

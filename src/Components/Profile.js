@@ -21,7 +21,8 @@ function Profile(){
             user_id: localStorage.user_id
         }})
         .then((response) => {
-        const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description]});
+        console.log(response.data)
+        const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description, elem.id]});
         setTexts(data);})
     };
     useEffect(() => {
@@ -80,6 +81,15 @@ function Profile(){
         uploadImage(base64);;
       };
   };
+  const delCourse = (courseID) => {
+    axios({
+        method: 'post',
+        url: 'http://localhost:8080/user/avatar',
+        headers: {Authorization: localStorage.session_id},
+        params: {course_id: courseID,
+        user_id: localStorage.user_id}
+    })
+  } 
     return(
     <div id="ProfilePage" style={styles.ProfilePage}>
     <div id="lkPage">Добро пожаловать, {loginValue}</div>
@@ -96,7 +106,7 @@ function Profile(){
             <p>Ваши курсы</p>
             {texts.map((text, index) => (
     <div className="CourseItem" key={index} title={text[2]}>{text[0]}<img className="CourseItemIMG" key={index} src={text[1]}></img>
-    <button>Отписаться</button></div>
+    <button onClick={()=>{delCourse(text[3])}}>Отписаться</button></div>
     ))}
         </div>
     </div>

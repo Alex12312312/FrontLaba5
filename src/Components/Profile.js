@@ -1,53 +1,65 @@
 import axios from 'axios'
 import styles from '../index.css'
 import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { SessionID } from '../Util/AuthContext';
 import CourseItem from './ProfileCourseItem'
 function Profile(){
     const [imageItem, setImage] = useState("")
     const [loginValue, setLogin] = useState("")
     const [emailValue, setEmail] = useState("")
+    const [idValue, setID] = useState(-1)
     const [visitCount, setVisitCount] = useState(0)
     const [texts, setTexts] = useState([]);
+    const navigate = useNavigate()
     const [userStatus, setUserStatus] = useState("")
     const [selectedImage, setSelectedImage] = useState(null)
+    const fetchData = () => {
+        axios.get('http://localhost:8080/course/user', {headers:{
+            Authorization: localStorage.session_id
+        }, params:{
+            user_id: localStorage.user_id
+        }})
+        .then((response) => {
+        const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description]});
+        setTexts(data);})
+    };
+    useEffect(() => {
     const req = async() =>{
         axios
         .get("http://localhost:8080/user/info", {headers: {
             Authorization: localStorage.session_id,
         }})
-        .then((response) =>{
+        .then((response) => {
+        if(response.status == 200){
+        localStorage.setItem("user_id", response.data.id)
+        setID(response.data.id)
         const dataURI = `data:image/png;base64,${response.data.avatar}`;
         setImage(dataURI)
         setEmail(response.data.email)
         setLogin(response.data.login)
         setUserStatus(response.data.role)
         setVisitCount(response.data.enterCounter)
-        localStorage.setItem("user_id", response.data.id)
+        fetchData();
+        } else{
+        setID(-1)
+        setImage("")
+        setEmail("")
+        setLogin("")
+        setUserStatus("")
+        setVisitCount(-1)
+        navigate("/")
+        }
         })
     }
-    req()
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get('http://localhost:8080/course/user', {headers:{
-                Authorization: localStorage.session_id
-            }, params:{
-                user_id: localStorage.user_id
-            }});
-            const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description]});
-            setTexts(data);
-          } catch (error) {
-          }
-        };
-        fetchData();
-      }, []);
+        req()
+      }, [localStorage.session_id]);
     const handleImageUpload = (event) =>{
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     const uploadImage = (element) => {axios.post("http://localhost:8080/user/avatar", {headers:{
-            Authorization: localStorage.session_id,
+            Authorization: Number(localStorage.session_id)
         }, data:{
             file: element
         }})

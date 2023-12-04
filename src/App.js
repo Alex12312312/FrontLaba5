@@ -7,6 +7,7 @@ import SiteBody from "./Components/MainBody"
 import SiteHead from "./Components/SiteHead"
 import RegPage from "./Components/RegPage"
 import Profile from "./Components/Profile"
+import CoursesPage from "./Components/CoursesPage"
 import { AuthContext, SessionID } from "./Util/AuthContext";
 
 function App(){
@@ -28,7 +29,7 @@ const [SessionId, setSessionId] = useState(null)
     <Route path="/loginPage" element={<Authpage/>}/>
     <Route path="/reg" element={<RegPage/>}/>
     <Route path="/lk" element={<Profile/>}/>
-    <Route path="/newsPage" element={<Profile/>}/>
+    <Route path="/coursesPage" element={<CoursesPage/>}/>
     <Route path="*" element={<Navigate to={{pathname:"/"}}/>}/>
     </Routes>
       </BrowserRouter>

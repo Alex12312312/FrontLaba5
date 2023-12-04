@@ -10,7 +10,6 @@ function Authpage(){
     const [passwordValue, setPassword] = useState('')
     const [errMsg, setError] = useState('');
     const navigate = useNavigate();
-
     const handleLogin = async (e) => {
       e.preventDefault();
       axios

@@ -33,11 +33,17 @@ function RegPage(){
             data: newUserData
         })
         .then((response) =>{
+            if(response.status == 200){
             setAuthStatus(true);
+            localStorage.setItem('session_id', 0)
             navigate("/")
+            }
+            else{
+                console.log(response.errMsg)
+            }
         })
         .catch((error) =>{
-            setError(error)
+            setError(String(error.response.data))
         })
     }
     return(
@@ -45,7 +51,7 @@ function RegPage(){
         <input className="RegField" id={"LoginField"} placeholder={"Login"} onChange={val => getLogin(val)}/>
         <input className="RegField" id={"PasswordField"} placeholder={"Password"} onChange={val => getPass(val)}/>
         <input className="RegField" id={"InputField"} placeholder={"Email"} onChange={val => getEmail(val)}/>
-        <p>{errMsg.message}</p>
+        <p>{errMsg}</p>
         <button className="RegFieldButton" onClick={(e) => req(e)}>Зарегистрироваться</button>
         {isAuth?<Navigate to={{pathname:"/"}}/>:null}
     </form>)

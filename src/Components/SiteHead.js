@@ -17,7 +17,7 @@ function SiteHead(){
     navigate("/")}}>Выход</div>
     </>
     }
-        <Link to="/newsPage" className="headerButton" id="mainPage">Новости</Link>
+        <Link to="/coursesPage" className="headerButton" id="coursesPage">Курсы</Link>
         
    </div>)
 }

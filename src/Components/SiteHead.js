@@ -11,8 +11,8 @@ function SiteHead(){
     const CloseSession = () =>{
         axios({
             method: 'post',
-            url: 'http://localhost:8080/user/registration',
-            headers: {session_id: localStorage.session_id}
+            url: 'http://localhost:8080/user/logout',
+            headers: {Authorization: Number(localStorage.session_id)}
         }).then((response) => {
             localStorage.session_id = -1
             localStorage.user_id = -1

@@ -65,9 +65,9 @@ function Profile(){
         }})*/
         axios({
             method: 'post',
-            url: 'http://localhost:8080/user/registration',
+            url: 'http://localhost:8080/user/avatar',
             headers: {Authorization: localStorage.session_id},
-            data: {file: element}
+            data: {file: btoa(element)}
         })
         .then((response) =>{
             console.log(response.status)

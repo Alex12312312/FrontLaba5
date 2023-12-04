@@ -28,7 +28,7 @@ function Profile(){
     const req = async() =>{
         axios
         .get("http://localhost:8080/user/info", {headers: {
-            Authorization: localStorage.session_id,
+            Authorization: localStorage.session_id
         }})
         .then((response) => {
         if(response.status == 200){
@@ -58,11 +58,17 @@ function Profile(){
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    const uploadImage = (element) => {axios.post("http://localhost:8080/user/avatar", {headers:{
+    const uploadImage = (element) => {/*axios.post("http://localhost:8080/user/avatar", {headers:{
             Authorization: Number(localStorage.session_id)
         }, data:{
             file: element
-        }})
+        }})*/
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/user/registration',
+            headers: {Authorization: localStorage.session_id},
+            data: {file: element}
+        })
         .then((response) =>{
             console.log(response.status)
         }

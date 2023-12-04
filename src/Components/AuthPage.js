@@ -17,7 +17,8 @@ function Authpage(){
           login:loginValue,
           password:passwordValue}})
         .then((response) =>{
-            localStorage.session_id = response.data
+            localStorage.setItem('session_id', response.data.session_id)
+            localStorage.setItem('user_id', response.data.user_id)
             setAuthStatus(true);
             navigate("/")
         })

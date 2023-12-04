@@ -45,12 +45,12 @@ function SiteBody(){
                 <div className="ImageButton" id="PreviosImage" onClick={() => {setPreviosImage()}}>{"<"}</div>
                 <div id="textInfo">
                 <div id="TextTitle">{allNews[currentNewsNum][0]}</div>
-                <div id="AuthorInfo">Автор: {allNews[currentNewsNum][1]}</div>
+                <div id="AuthorInfo">Автор: {allNews[currentNewsNum][2]}</div>
                 </div>
                 <div className="ImageButton" id="NextImage" onClick={() => {setNextImage()}}>{">"}</div>
                 </div>
                 <div id="newsText">
-                    {allNews[currentNewsNum][2]}
+                    {allNews[currentNewsNum][1]}
                 </div>
             </div>
             </>
@@ -58,7 +58,8 @@ function SiteBody(){
             </div>
             <div id="otherNewsBlock">
             {allNews.map((text, index) => (
-        <div className="newsItem" key={"newsItem" + index} title={text[1]} onClick={() => {setCurNews(index)}}>
+        <div className="newsItem" key={"newsItem" + index} title={text[1]} onClick={() => {setCurNews(index)
+        setCurIMGNum(0)}}>
             <img className="newsItemIMG" key={"newsItemImage" + index} src={text[3][0]}></img>
             {text[0]}
         </div>

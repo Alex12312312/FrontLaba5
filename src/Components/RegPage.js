@@ -35,7 +35,8 @@ function RegPage(){
         .then((response) =>{
             if(response.status == 200){
             setAuthStatus(true);
-            localStorage.setItem('session_id', 0)
+            localStorage.setItem('session_id', response.data.session_id)
+            localStorage.setItem('user_id', response.data.user_id)
             navigate("/")
             }
             else{

@@ -19,6 +19,7 @@ function SiteBody(){
             }
             )
                 setAllNews(gotData)
+                console.log(response.data)
             })
         }
     getNews()
@@ -26,6 +27,7 @@ function SiteBody(){
     const setPreviosImage = () => {
         if((curIMG - 1) > 0){
             setCurIMGNum(curIMG - 1)
+            console.log(curIMG)
         }
     }
     const setNextImage = () => {
@@ -39,7 +41,7 @@ function SiteBody(){
         <div id="newsBlock">
             <div id="currentNewsBlock">
         {allNews.length > 0 && allNews[currentNewsNum]  && allNews[currentNewsNum][3] && (<>
-      <img id="currentImage" src={allNews[currentNewsNum][3][curIMG]} alt="News Image"/>
+      <img id="currentImage" src={allNews[0][3][1]} alt="News Image"/>
       <div id="currentNewsText">
                 <div id="textHeader">
                 <div className="ImageButton" id="PreviosImage" onClick={() => {setPreviosImage()}}>{"<"}</div>

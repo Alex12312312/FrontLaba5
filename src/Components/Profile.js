@@ -84,7 +84,7 @@ function Profile(){
   const delCourse = (courseID) => {
     axios({
         method: 'post',
-        url: 'http://localhost:8080/user/avatar',
+        url: 'http://localhost:8080/course/user/delete',
         headers: {Authorization: localStorage.session_id},
         params: {course_id: courseID,
         user_id: localStorage.user_id}

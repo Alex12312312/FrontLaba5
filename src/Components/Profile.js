@@ -53,7 +53,7 @@ function Profile(){
         })
     }
         req()
-      }, [localStorage.session_id]);
+      }, [localStorage.session_id, imageItem]);
     const handleImageUpload = (event) =>{
     const file = event.target.files[0];
     const reader = new FileReader();

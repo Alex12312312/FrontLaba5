@@ -11,7 +11,7 @@ import CoursesPage from "./Components/CoursesPage"
 import { AuthContext, SessionID } from "./Util/AuthContext";
 
 function App(){
-const [isAuth, setAuthStatus] = useState(false)
+const [isAuth, setAuthStatus] = useState((localStorage.session_id != -1)?true:false)
 const [SessionId, setSessionId] = useState(null)
   return(
   <SessionID.Provider value={{

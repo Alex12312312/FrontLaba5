@@ -21,7 +21,6 @@ function Profile(){
             user_id: localStorage.user_id
         }})
         .then((response) => {
-        console.log(response.data)
         const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description, elem.id]});
         setTexts(data);})
     };
@@ -64,14 +63,14 @@ function Profile(){
         }, data:{
             file: element
         }})*/
+        console.log(element.split(',')[1])
         axios({
             method: 'post',
             url: 'http://localhost:8080/user/avatar',
             headers: {Authorization: localStorage.session_id},
-            data: {file: btoa(element)}
+            data: {file: element.split(',')[1]}
         })
         .then((response) =>{
-            console.log(response.status)
         }
         )
     }
@@ -83,7 +82,7 @@ function Profile(){
   };
   const delCourse = (courseID) => {
     axios({
-        method: 'post',
+        method: 'get',
         url: 'http://localhost:8080/course/user/delete',
         headers: {Authorization: localStorage.session_id},
         params: {course_id: courseID,

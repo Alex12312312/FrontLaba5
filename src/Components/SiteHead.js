@@ -9,11 +9,13 @@ function SiteHead(){
     const {isAuth, setAuthStatus} = useContext(AuthContext)
     const navigate = useNavigate()
     const CloseSession = () =>{
-        axios({
+        axios.get('http://localhost:8080/user/logout', {headers:{
+            Authorization: localStorage.session_id
+        }})/*({
             method: 'post',
             url: 'http://localhost:8080/user/logout',
             headers: {Authorization: Number(localStorage.session_id)}
-        }).then((response) => {
+        })*/.then((response) => {
             localStorage.session_id = -1
             localStorage.user_id = -1
             setAuthStatus(false)

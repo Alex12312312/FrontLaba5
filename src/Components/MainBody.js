@@ -24,7 +24,7 @@ function SiteBody(){
     getNews()
     }, [])
     const setPreviosImage = () => {
-        if((curIMG - 1) > 0){
+        if((curIMG - 1) >= 0){
             setCurIMGNum(curIMG - 1)
         }
     }

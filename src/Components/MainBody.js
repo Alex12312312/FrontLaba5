@@ -19,7 +19,6 @@ function SiteBody(){
             }
             )
                 setAllNews(gotData)
-                console.log(response.data)
             })
         }
     getNews()

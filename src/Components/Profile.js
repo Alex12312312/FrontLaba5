@@ -24,7 +24,6 @@ function Profile(){
         const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description, elem.id]});
         setTexts(data);})
     };
-    useEffect(() => {
     const req = async() =>{
         axios
         .get("http://localhost:8080/user/info", {headers: {
@@ -52,6 +51,7 @@ function Profile(){
         }
         })
     }
+    useEffect(() => {
         req()
       }, [localStorage.session_id, imageItem]);
     const handleImageUpload = (event) =>{
@@ -71,6 +71,7 @@ function Profile(){
             data: {file: element.split(',')[1]}
         })
         .then((response) =>{
+            req()
         }
         )
     }
@@ -87,6 +88,8 @@ function Profile(){
         headers: {Authorization: localStorage.session_id},
         params: {course_id: courseID,
         user_id: localStorage.user_id}
+    }).then(()=>{
+        fetchData()
     })
   } 
     return(

@@ -36,7 +36,7 @@ function SiteBody(){
         }
     }
     return(
-    <div id="mainBody">
+    <div className="sitePage" id="mainBody">
         <div id="newsBlockHeader">Актуальные новости нашего Университета</div>
         <div id="newsBlock">
             <div id="currentNewsBlock">

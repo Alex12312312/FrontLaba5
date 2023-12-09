@@ -104,12 +104,12 @@ function Profile(){
     })
   } 
     return(
-    <div id="ProfilePage" style={styles.ProfilePage}>
+    <div className='sitePage' id="ProfilePage" style={styles.ProfilePage}>
     <div id="lkPage">Добро пожаловать, {loginValue}</div>
     <div id="UserCart">
     <div id="ImagePlace">
     <img className='ProfileImage' src={imageItem}></img>
-    <input type="file" id="ChangeImageArea" onChange={(e) => {handleImageUpload(e)}}/>
+    <input accept="image/png" type="file" id="ChangeImageArea" onChange={(e) => {handleImageUpload(e)}}/>
     </div>
     <div id="DataPlace">
         <div>Количество посещений: {visitCount}</div>

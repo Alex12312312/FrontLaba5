@@ -29,6 +29,7 @@ function Authpage(){
 
     return(
       (!AuthStatus)?
+        <div className="sitePage">
         <div id="AuthPage" style={styles.Authpage}>
         <div id="AuthBlock">
         <div id="dataFields">
@@ -41,6 +42,7 @@ function Authpage(){
           handleLogin(e)
         }>Войти</button>
         <div id="ErrorField">{errMsg.message}</div>
+        </div>
         </div>
         </div>:navigate("/")
     )

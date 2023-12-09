@@ -48,7 +48,7 @@ function RegPage(){
         })
     }
     return(
-    <div className="RegPage">
+    <div className="sitePage" id="RegPage">
     <form className="RegBlock">
         <div id="RegTitle">Форма регистрации</div>
         <input className="RegField" id={"LoginField"} placeholder={"Login"} onChange={val => getLogin(val)}/>

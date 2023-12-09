@@ -1,5 +1,4 @@
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -14,7 +13,7 @@ code {
 }
 
 #root{
-  height: 100lvh;
+  height: 97lvh;
 }
 
 #headerField{
@@ -43,6 +42,10 @@ code {
   background-color: white;
   transition: 1s;
   cursor: pointer;
+}
+
+#TimePlace{
+  margin: 15px;
 }
 
 #AuthBlock{
@@ -98,7 +101,11 @@ code {
   color:white;
 }
 
-.RegPage{
+.sitePage{
+  height: 70%;
+}
+
+#RegPage{
   display: flex;
   justify-content: center;
   align-items: center;

@@ -50,6 +50,17 @@ function Profile(){
         navigate("/")
         }
         })
+        .catch((error) => {
+        if(error.response.status == 401){
+        setID(-1)
+        setImage("")
+        setEmail("")
+        setLogin("")
+        setUserStatus("")
+        setVisitCount(-1)
+        navigate("/")
+        }
+        })
     }
     useEffect(() => {
         req()

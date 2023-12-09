@@ -19,6 +19,8 @@ function SiteBody(){
             }
             )
                 setAllNews(gotData)
+            }).catch((error) => {
+                alert("Связь с сервером потеряна!")
             })
         }
     getNews()

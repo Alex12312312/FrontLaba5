@@ -98,14 +98,42 @@ code {
   color:white;
 }
 
+.RegPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .RegBlock{
+  width: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+#RegTitle{
+  color: rgb(16, 16, 94);
 }
 
 .RegField{
   width: 200px;
   margin: 10px;
+}
+
+.RegFieldButton{
+  width: 200px;
+  cursor: pointer;
+  background-color:rgb(16, 16, 94);
+  color: white;
+  margin-bottom: 15px;
+}
+
+.RegFieldButton:hover{
+  background-color:white;
+  color:rgb(16, 16, 94);
+  transition: 0.3s;
 }
 
 .ProfilePage{
@@ -358,4 +386,13 @@ code {
 
 #newsText{
   text-overflow: ellipsis;
+}
+
+#sitePodval{
+  background-color:rgb(16, 16, 94);
+  height: 16dvh;
+}
+
+#TimePlace{
+  color:white;
 }

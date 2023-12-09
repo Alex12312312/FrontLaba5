@@ -48,14 +48,17 @@ function RegPage(){
         })
     }
     return(
+    <div className="RegPage">
     <form className="RegBlock">
+        <div id="RegTitle">Форма регистрации</div>
         <input className="RegField" id={"LoginField"} placeholder={"Login"} onChange={val => getLogin(val)}/>
         <input className="RegField" id={"PasswordField"} placeholder={"Password"} onChange={val => getPass(val)}/>
         <input className="RegField" id={"InputField"} placeholder={"Email"} onChange={val => getEmail(val)}/>
         <p>{errMsg}</p>
         <button className="RegFieldButton" onClick={(e) => req(e)}>Зарегистрироваться</button>
         {isAuth?<Navigate to={{pathname:"/"}}/>:null}
-    </form>)
+    </form>
+    </div>)
 }
 
 export default RegPage;

@@ -9,6 +9,7 @@ import RegPage from "./Components/RegPage"
 import Profile from "./Components/Profile"
 import CoursesPage from "./Components/CoursesPage"
 import { AuthContext, SessionID } from "./Util/AuthContext";
+import Podval from "./Components/Podval"
 
 function App(){
 const [isAuth, setAuthStatus] = useState((localStorage.session_id != -1)?true:false)
@@ -32,6 +33,7 @@ const [SessionId, setSessionId] = useState(null)
     <Route path="/coursesPage" element={<CoursesPage/>}/>
     <Route path="*" element={<Navigate to={{pathname:"/"}}/>}/>
     </Routes>
+    <Podval/>
       </BrowserRouter>
       </AuthContext.Provider>
       </SessionID.Provider>)

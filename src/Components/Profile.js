@@ -58,7 +58,9 @@ function Profile(){
         setLogin("")
         setUserStatus("")
         setVisitCount(-1)
-        navigate("/")
+        localStorage.user_id = -1
+        localStorage.session_id = -1
+        navigate("/authPage")
         }
         })
     }

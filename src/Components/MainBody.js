@@ -16,7 +16,7 @@ function SiteBody(){
                     element.title, 
                     element.description, 
                     element.user_login,
-                    element.images.map(image=>{return `data:image/png;base64,${image}`})
+                    element.images.map(image=>{return `data:image/${image[0]};base64,${image[1]}`})
                 ]
             }
             )

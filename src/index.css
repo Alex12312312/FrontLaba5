@@ -203,7 +203,7 @@ code {
   margin: 10px;
   width: 95%;
   background-color: white;
-  height: 85%;
+  height: 75%;
   display: flex;
   flex-direction: column
 }
@@ -404,3 +404,33 @@ code {
   color:white;
 }
 
+#newsPage{
+  display: flex;
+  justify-content: center;
+}
+
+#newsPageBlock{
+  background-color: rgb(255, 255, 255, 0.7);
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.newsPageButton{
+  color:rgb(16, 16, 94)
+}
+
+.newsPageButton:hover{
+  cursor: pointer;
+  color: white;
+  background-color: rgb(16, 16, 94);
+}
+
+#newsPageImagesField{
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}

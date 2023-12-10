@@ -110,7 +110,7 @@ function Profile(){
     <div id="UserCart">
     <div id="ImagePlace">
     <img className='ProfileImage' src={imageItem}></img>
-    <input accept="image/png" type="file" id="ChangeImageArea" onChange={(e) => {handleImageUpload(e)}}/>
+    <input accept="image/png, image/jpeg, image/gif, image/jpg" type="file" id="ChangeImageArea" onChange={(e) => {handleImageUpload(e)}}/>
     </div>
     <div id="DataPlace">
         <div>Количество посещений: {visitCount}</div>

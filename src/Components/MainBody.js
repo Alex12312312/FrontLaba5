@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios, { all } from "axios";
+import { useNavigate, Navigate } from "react-router-dom";
 
 function SiteBody(){
+    const navigate = useNavigate()
     const [allNews, setAllNews] = useState([])
     const [currentNewsNum, setCurNews] = useState(0)
     const [curIMG, setCurIMGNum] = useState(0)
@@ -41,7 +43,8 @@ function SiteBody(){
         <div id="newsBlock">
             <div id="currentNewsBlock">
         {allNews.length > 0 && allNews[currentNewsNum]  && allNews[currentNewsNum][3] && (<>
-      <img id="currentImage" src={allNews[currentNewsNum][3][curIMG]} alt="News Image"/>
+      <img id="currentImage" src={allNews[currentNewsNum][3][curIMG]} alt="News Image"
+       onClick={()=>{navigate(`/newsPage/${currentNewsNum}`, {state:{elem:allNews[currentNewsNum]}})}}/>
       <div id="currentNewsText">
                 <div id="textHeader">
                 <div className="ImageButton" id="PreviosImage" onClick={() => {setPreviosImage()}}>{"<"}</div>

@@ -21,7 +21,7 @@ function Profile(){
             user_id: localStorage.user_id
         }})
         .then((response) => {
-        const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description, elem.id]});
+        const data = response.data.map(elem=>{return [elem.name,`data:image/${elem.image[0]};base64,${elem.image[1]}`, elem.description, elem.id]});
         setTexts(data);})
     };
     const req = async() =>{
@@ -33,7 +33,7 @@ function Profile(){
         if(response.status == 200){
         localStorage.setItem("user_id", response.data.id)
         setID(response.data.id)
-        const dataURI = `data:image/png;base64,${response.data.avatar}`;
+        const dataURI = `data:image/${response.data.avatar[0]};base64,${response.data.avatar[1]}`;
         setImage(dataURI)
         setEmail(response.data.email)
         setLogin(response.data.login)
@@ -76,12 +76,11 @@ function Profile(){
         }, data:{
             file: element
         }})*/
-        console.log(element.split(',')[1])
         axios({
             method: 'post',
             url: 'http://localhost:8080/user/avatar',
             headers: {Authorization: localStorage.session_id},
-            data: {file: element.split(',')[1]}
+            data: {file: element}
         })
         .then((response) =>{
             req()

@@ -16,16 +16,18 @@ function CoursesPage(){
             headers: {Authorization: Number(localStorage.session_id)},
             params: {user_id: Number(localStorage.user_id)}
         }).then((response) => {
-            const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description, elem.id]});
+            const data = response.data.map(elem=>{return [elem.name,`data:image/${elem.image[0]};base64,${elem.image[1]}`, elem.description, elem.id]});
             setUserCourses(data);}
-        )
+        ).catch((error) =>{
+            setAuthStatus(false)
+        })
     };
     
     useEffect(() => {
         const fetchData = () => {
             axios.get('http://localhost:8080/course/all')
             .then((response) => {
-            const data = response.data.map(elem=>{return [elem.name,`data:image/png;base64,${elem.image}`, elem.description, elem.id]});
+            const data = response.data.map(elem=>{return [elem.name,`data:image/${elem.image[0]};base64,${elem.image[1]}`, elem.description, elem.id]});
             setItems(data);})
         }
     if(isAuth){

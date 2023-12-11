@@ -2,9 +2,10 @@ import axios from 'axios'
 import styles from '../index.css'
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SessionID } from '../Util/AuthContext';
+import { AuthContext, SessionID } from '../Util/AuthContext';
 import CourseItem from './ProfileCourseItem'
 function Profile(){
+    const {isAuth, setAuthStatus} = useContext(AuthContext)
     const [imageItem, setImage] = useState("")
     const [loginValue, setLogin] = useState("")
     const [emailValue, setEmail] = useState("")
@@ -58,6 +59,7 @@ function Profile(){
         setLogin("")
         setUserStatus("")
         setVisitCount(-1)
+        setAuthStatus(false)
         localStorage.user_id = -1
         localStorage.session_id = -1
         navigate("/authPage")

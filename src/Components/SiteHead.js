@@ -21,7 +21,12 @@ function SiteHead(){
             setAuthStatus(false)
             navigate("/")
         }
-        )
+        ).catch((error)=>{
+            localStorage.session_id = -1
+            localStorage.user_id = -1
+            setAuthStatus(false)
+            navigate("/")
+        })
     }
     return(<div id="headerField" style={styles.headerField}>
     <Link to="/" id="UniverName">Университетский Государственный Университет</Link>

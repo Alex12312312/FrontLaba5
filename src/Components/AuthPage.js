@@ -23,7 +23,7 @@ function Authpage(){
             navigate("/")
         })
         .catch((error) =>{
-            setError(error)
+          setError(error)
         })
     };
 

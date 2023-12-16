@@ -35,15 +35,17 @@ function CoursesPage(){
     }
     fetchData()
     }, [])
-    const addCourse = (courseIndex) => {
+    const addCourse = (courseIndex, e) => {
         axios({
             method: 'get',
             url: 'http://localhost:8080/course/user/add',
             headers: {'Authorization': Number(localStorage.session_id)},
-            params: {course_id: courseIndex,
+            params: {course_id: courseIndex[3],
             user_id: localStorage.user_id}
         })
         .then((response) => {
+            courseIndex[4] = true
+            setUserCourses(userCourses => [...userCourses, courseIndex])
         })
         .catch((error) => {
             if(error.response.status == 401){
@@ -53,7 +55,7 @@ function CoursesPage(){
                 navigate("/")
             } 
             else if(error.response.status == 400){
-                alert("Вы уже записаны на этот курс")
+                setUserCourses(userCourses => [...userCourses, courseIndex])
             }
         })
     }
@@ -61,7 +63,7 @@ function CoursesPage(){
          {items.map((text, index) => (
     <div key={"item"+index} className="CoursePageItem"  title={text[2]}><div key={'text' + index}>{text[0]}</div>
     <img className="CourseItemIMG" key={"image" + index} src={text[1]}></img>
-    {(isAuth)?<button onClick={(e) => {addCourse(text[3])}} disabled={text[4]}>
+    {(isAuth && !userCourses.includes(text))?<button onClick={(e) => {addCourse(text, e)}}>
         Записаться</button>:<></>}</div>
     ))}
     </div>)

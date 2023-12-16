@@ -10,7 +10,10 @@ import Profile from "./Components/Profile"
 import CoursesPage from "./Components/CoursesPage"
 import { AuthContext, SessionID } from "./Util/AuthContext";
 import Podval from "./Components/Podval"
-import NewsPage from "./Components/NewsPage";
+import NewsPage from "./Components/NewsPage"
+import ControlPanel from "./Components/ControlPanel";
+import NewCourse from "./Components/NewCourse";
+import NewNews from "./Components/NewNews";
 
 function App(){
 const [isAuth, setAuthStatus] = useState((localStorage.session_id != -1)?true:false)
@@ -28,11 +31,14 @@ const [SessionId, setSessionId] = useState(null)
     <SiteHead/>
     <Routes>
     <Route exact path="/" element={<SiteBody/>}/>
+    <Route path="/addNews" element={<NewNews/>}/>
+    <Route path="/addCourse" element={<NewCourse/>}/>
     <Route exact path="/newsPage/:id" element={<NewsPage/>}/>
     <Route path="/loginPage" element={<Authpage/>}/>
     <Route path="/reg" element={<RegPage/>}/>
     <Route path="/lk" element={<Profile/>}/>
     <Route path="/coursesPage" element={<CoursesPage/>}/>
+    <Route path="/controlPanel" element={<ControlPanel/>}/>
     <Route path="*" element={<Navigate to={{pathname:"/"}}/>}/>
     </Routes>
     <Podval/>

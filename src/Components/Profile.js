@@ -1,7 +1,7 @@
 import axios from 'axios'
 import styles from '../index.css'
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext, SessionID } from '../Util/AuthContext';
 import CourseItem from './ProfileCourseItem'
 function Profile(){
@@ -73,11 +73,7 @@ function Profile(){
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    const uploadImage = (element) => {/*axios.post("http://localhost:8080/user/avatar", {headers:{
-            Authorization: Number(localStorage.session_id)
-        }, data:{
-            file: element
-        }})*/
+    const uploadImage = (element) => {
         axios({
             method: 'post',
             url: 'http://localhost:8080/user/avatar',
@@ -118,6 +114,7 @@ function Profile(){
         <div>Количество посещений: {visitCount}</div>
         <div>email: {emailValue}</div>
         <div>Статус: {userStatus}</div>
+        {userStatus != "user"? <Link to="/controlPanel" id="ConsolePanelLink">Панель управления</Link>:null}
         <div id="CoursesPlace">
             <p>Ваши курсы</p>
             {texts.map((text, index) => (

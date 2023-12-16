@@ -267,6 +267,10 @@ code {
   margin: 50px;
 }
 
+#CoursesPage{
+  overflow-x: scroll;
+}
+
 #CoursesPlaces{
   overflow-y: scroll;
 }

@@ -20,7 +20,7 @@ function NewCourse(){
     }
     const addCourse = () =>{
         axios({
-            method: 'get',
+            method: 'post',
             url: 'http://localhost:8080/course/add',
             headers: {Authorization: localStorage.session_id},
             params: {name: titleValue,

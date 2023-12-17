@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
-function NewCourse(){
+function NewCourse(props){
     const navigate = useNavigate()
-    const [IMGfile, setFile] = useState(null)
-    const [titleValue, setTitle] = useState(null)
-    const [textValue, setText] = useState(null)
+    const [IMGfile, setFile] = useState((props.imgs != null)? props.imgs:null)
+    const [titleValue, setTitle] = useState((props.title != null)? props.title:null)
+    const [textValue, setText] = useState((props.newsText != null)? props.newsText:null)
     const [newsError, setError] = useState("")
     const addNewFile = (event) =>{
         const curfile = event;

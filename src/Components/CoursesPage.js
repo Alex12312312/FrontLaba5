@@ -59,12 +59,33 @@ function CoursesPage(){
             }
         })
     }
+    const delCourse = (event, CourseData) => {
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/course/delete',
+            headers: {'Authorization': Number(localStorage.session_id)},
+            params: {id: CourseData[3]}
+        }).catch((error) => {
+            if(error.response.status == 401){
+                localStorage.user_id = -1
+                localStorage.session_id = -1
+                setAuthStatus(false)
+                navigate("/")
+            } 
+        }).then(() => {
+            axios.get('http://localhost:8080/course/all')
+            .then((response) => {
+            const data = response.data.map(elem=>{return [elem.name,`data:image/${elem.image[0]};base64,${elem.image[1]}`, elem.description, elem.id]});
+            setItems(data);})
+        })
+    }
     return(<div className='sitePage' id='CoursesPage'>
          {items.map((text, index) => (
     <div key={"item"+index} className="CoursePageItem"  title={text[2]}><div key={'text' + index}>{text[0]}</div>
     <img className="CourseItemIMG" key={"image" + index} src={text[1]}></img>
     {(isAuth && !userCourses.includes(text))?<button onClick={(e) => {addCourse(text, e)}}>
-        Записаться</button>:<></>}</div>
+        Записаться</button>:<></>}
+    {(localStorage.user_role != "user")?<button onClick={(e) => {delCourse(e, text)}}>Удалить курс</button>:<></>}</div>
     ))}
     </div>)
 }

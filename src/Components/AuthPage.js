@@ -19,6 +19,7 @@ function Authpage(){
         .then((response) =>{
             localStorage.setItem('session_id', response.data.session_id)
             localStorage.setItem('user_id', response.data.user_id)
+            localStorage.setItem('user_role', response.data.role)
             setAuthStatus(true);
             navigate("/")
         })

@@ -28,7 +28,7 @@ function NewCourse(){
         }).then((response)=>{
             navigate("/controlPanel")
         }).catch((error)=>{
-            console.log(error)
+            setError(error.response.data)
         })
     }
     return(<div className="newItemPage">

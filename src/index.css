@@ -555,6 +555,7 @@ code {
 }
 
 .NewsControlButton{
+  text-decoration: none;
   width:85%;
   height: auto;
   background-color: rgb(16, 16, 94);

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 function NewsPage(){
     const navigate = useNavigate()
@@ -45,7 +45,8 @@ function NewsPage(){
             </div>
         </div>
         {localStorage.role != "user"?<div id="NewsControlPanel">
-        <div className="NewsControlButton" id="NewsEditButton">Редактировать новость</div>
+        <Link className="NewsControlButton" id="NewsEditButton" to="/addNews"
+         state={{elem:location.state.elem, newsNum: location.state.num}}>Редактировать новость</Link>
         <div className="NewsControlButton" id="NewsDeleteButton" onClick={(e) =>{DelNews(e)}}>Удалить новость</div>
         </div>:<></>}
     </div>)

@@ -45,7 +45,7 @@ function SiteBody(){
             <div id="currentNewsBlock">
         {allNews.length > 0 && allNews[currentNewsNum]  && allNews[currentNewsNum][3] && (<>
       <img id="currentImage" src={allNews[currentNewsNum][3][curIMG]} alt="News Image"
-       onClick={()=>{navigate(`/newsPage/${currentNewsNum}`, {state:{elem:allNews[currentNewsNum]}})}}/>
+       onClick={()=>{navigate(`/newsPage/${currentNewsNum}`, {state:{elem:allNews[currentNewsNum], num:currentNewsNum}})}}/>
       <div id="currentNewsText">
                 <div id="textHeader">
                 <div className="ImageButton" id="PreviosImage" onClick={() => {setPreviosImage()}}>{"<"}</div>

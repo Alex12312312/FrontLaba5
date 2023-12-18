@@ -4,10 +4,11 @@ import axios from "axios";
 function NewNews(){
     const location = useLocation()
     const navigate = useNavigate()
-    const [IMGfile, setFile] = useState((location.state != null)? location.state.imgs:null)
-    const [titleValue, setTitle] = useState((location.state != null)? location.state.title:"")
-    const [textValue, setText] = useState((location.state != null)? location.state.newsText:"")
-    const [idValue, setId] = useState((location.state != null)? location.state.courseId:"")
+    const [IMGfile, setFile] = useState((location.state != null)? location.state.elem[3]:null)
+    const [titleValue, setTitle] = useState((location.state != null)? location.state.elem[0]:"")
+    const [textValue, setText] = useState((location.state != null)? location.state.elem[1]:"")
+    const [userId, setUserid] = useState((location.state != null)? location.state.elem[2]:localStorage.user_id)
+    const [idValue, setId] = useState((location.state != null)? location.state.elem[4]:"")
     const [newsNum, setNewsNum] = useState((location.state != null)? location.state.newsNum:"")
     const [newsError, setError] = useState("")
     const addNewFile = (event) =>{
@@ -27,11 +28,11 @@ function NewNews(){
             url: 'http://localhost:8080/news/add',
             headers: {Authorization: localStorage.session_id},
             data: {title: titleValue,
-            user_id: localStorage.user_id,
+            user_id: userId,
             description: textValue,
             images: IMGfile}
         }).then((response)=>{
-            navigate("/controlPanel")
+            navigate(-1)
         }).catch((error)=>{
             setError("Ошибка")
         })
@@ -56,7 +57,7 @@ function NewNews(){
             description: textValue,
             images: IMGfile}
         }).then((response)=>{
-            navigate(-1)
+            navigate(-2)
         }).catch((error)=>{
             setError("Ошибка")
         })

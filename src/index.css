@@ -269,7 +269,8 @@ code {
 }
 
 #CoursesPage{
-  overflow-x: scroll;
+  display: flex;
+  justify-content: center;
 }
 
 #CoursesPlaces{

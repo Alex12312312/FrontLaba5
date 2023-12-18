@@ -479,8 +479,9 @@ code {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  height: 100px;
-  width: 200px;
+  height: auto;
+  width: auto;
+  padding: 10px;
   border: 1px solid rgb(16, 16, 94);
   color: rgb(16, 16, 94);
   background-color: white;
@@ -570,4 +571,56 @@ code {
   color: rgb(16, 16, 94);
   background-color: white;
   cursor: pointer;
+}
+
+#userListPage{
+  display: flex;
+  justify-content: center;
+}
+
+#userTable{
+  height: 95%;
+  width: 80%;
+  background-color: white;
+}
+
+.userTableItem{
+  height: auto;
+  width: 100%;
+  display: flex;
+  border: 1px solid black;
+  justify-content: space-between;
+}
+
+.tableRightSide{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 60%;
+  padding: 5px 5px;
+}
+
+.tableLeftSide{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: auto;
+  width: 40%;
+  padding: 5px 5px;
+}
+
+.deleteUserButton{
+  display: flex;
+  padding: 5px 5px;
+  text-decoration: none;
+  color:rgb(16, 16, 94);
+  cursor:pointer;
+  align-items: center;
+}
+
+.deleteUserButton:hover{
+  height: auto;
+  background-color: rgb(16, 16, 94);
+  color:white;
 }

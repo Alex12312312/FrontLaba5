@@ -17,7 +17,7 @@ function UserList(){
         event.preventDefault()
         axios({
             method: 'post',
-            url: 'http://localhost:8080/course/user/add',
+            url: 'http://localhost:8080/user/delete',
             headers: {'Authorization': Number(localStorage.session_id)},
             params: {user_id: userId}
         })
@@ -31,7 +31,7 @@ function UserList(){
                 </div>
                 <div key={"LS" + data.id} className="tableLeftSide">
                     <div  className="deleteUserButton" onClick={(e) => {deleteUser(e, data.id)}}>Удалить</div>
-                    <Link className="deleteUserButton">Редактировать</Link>
+                    <Link className="deleteUserButton" to="/userEdit" state={{user: data}}>Редактировать</Link>
                 </div>
             </div>))}
         </div>

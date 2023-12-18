@@ -529,3 +529,17 @@ code {
   width: 40px;
   margin: 10px;
 }
+
+.CourseEditButton{
+  margin-left: 10px;
+  text-decoration: none;
+  background-color: white;
+  cursor: pointer;
+  color: rgb(16, 16, 94);
+}
+
+.CourseEditButton:hover{
+  color: white;
+  background-color: rgb(16, 16, 94);
+  border: 1px solid white;
+}

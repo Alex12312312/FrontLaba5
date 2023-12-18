@@ -2,7 +2,7 @@ import axios from 'axios'
 import styles from '../index.css'
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../Util/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 function CoursesPage(){
     const navigate = useNavigate()
     const {isAuth, setAuthStatus} = useContext(AuthContext)
@@ -79,13 +79,16 @@ function CoursesPage(){
             setItems(data);})
         })
     }
+
     return(<div className='sitePage' id='CoursesPage'>
          {items.map((text, index) => (
     <div key={"item"+index} className="CoursePageItem"  title={text[2]}><div key={'text' + index}>{text[0]}</div>
     <img className="CourseItemIMG" key={"image" + index} src={text[1]}></img>
     {(isAuth && !userCourses.includes(text))?<button onClick={(e) => {addCourse(text, e)}}>
         Записаться</button>:<></>}
-    {(localStorage.user_role != "user")?<button onClick={(e) => {delCourse(e, text)}}>Удалить курс</button>:<></>}</div>
+    {(localStorage.user_role != "user")?<><button onClick={(e) => {delCourse(e, text)}}>Удалить курс</button>
+    <Link className='CourseEditButton' to="/addCourse" state={{title: text[0], newsText: text[2], imgs: text[1], courseId: text[3]}}>Редактировать курс</Link>
+    </>:<></>}</div>
     ))}
     </div>)
 }

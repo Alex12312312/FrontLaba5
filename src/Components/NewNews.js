@@ -40,10 +40,10 @@ function NewNews(){
     }
     return(<div className="newItemPage">
         <div className="ItemField">
-            <input className="TitleInput" placeholder="Введите заголовок новости" onChange={e=>setTitle(e.target.value)}></input>
+            <input className="TitleInput" placeholder="Введите заголовок новости" onChange={e=>setTitle(e.target.value)} value={titleValue}></input>
         </div>
         <div className="ItemField">
-            <textarea className="TextInput" placeholder="Введите текст новости" onChange={e=>setText(e.target.value)}></textarea>
+            <textarea className="TextInput" placeholder="Введите текст новости" onChange={e=>setText(e.target.value)} value={textValue}></textarea>
         </div>
         <div className="ItemField">
             <div className="ImageUploadFieldTitle">Прикрепите изображения к новости</div>

@@ -20,7 +20,11 @@ function UserList(){
             url: 'http://localhost:8080/user/delete',
             headers: {'Authorization': Number(localStorage.session_id)},
             params: {user_id: userId}
+        }).then((response)=>{
+        }).catch((error) => {
+
         })
+        getUsers()
     }
     return(<div className="sitePage" id="userListPage">
         <div id="userTable">

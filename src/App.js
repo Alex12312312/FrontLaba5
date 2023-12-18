@@ -14,6 +14,8 @@ import NewsPage from "./Components/NewsPage"
 import ControlPanel from "./Components/ControlPanel";
 import NewCourse from "./Components/NewCourse";
 import NewNews from "./Components/NewNews";
+import UserList from "./Components/UserList";
+import UserEdit from "./Components/UserEdit";
 
 function App(){
 const [isAuth, setAuthStatus] = useState((localStorage.session_id != -1)?true:false)
@@ -39,6 +41,8 @@ const [SessionId, setSessionId] = useState(null)
     <Route path="/lk" element={<Profile/>}/>
     <Route path="/coursesPage" element={<CoursesPage/>}/>
     <Route path="/controlPanel" element={<ControlPanel/>}/>
+    <Route path="/userEdit" element={<UserEdit/>}/>
+    <Route path="/userList" element={<UserList/>}/>
     <Route path="*" element={<Navigate to={{pathname:"/"}}/>}/>
     </Routes>
     <Podval/>

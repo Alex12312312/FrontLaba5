@@ -1,11 +1,14 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import axios from "axios";
 function NewNews(){
+    const location = useLocation()
     const navigate = useNavigate()
-    const [IMGfile, setFile] = useState([])
-    const [titleValue, setTitle] = useState(null)
-    const [textValue, setText] = useState(null)
+    const [IMGfile, setFile] = useState((location.state != null)? location.state.imgs:null)
+    const [titleValue, setTitle] = useState((location.state != null)? location.state.title:"")
+    const [textValue, setText] = useState((location.state != null)? location.state.newsText:"")
+    const [idValue, setId] = useState((location.state != null)? location.state.courseId:"")
+    const [newsNum, setNewsNum] = useState((location.state != null)? location.state.newsNum:"")
     const [newsError, setError] = useState("")
     const addNewFile = (event) =>{
         const curfile = event;
@@ -38,6 +41,27 @@ function NewNews(){
     updatedImages.splice(index, 1);
     setFile(updatedImages);
     }
+
+    const editCourse = (event) =>{
+        event.preventDefault()
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/news/edit',
+            headers: {Authorization: localStorage.session_id},
+            params: {
+            id:idValue
+            },
+            data: {title: titleValue,
+            user_id: localStorage.user_id,
+            description: textValue,
+            images: IMGfile}
+        }).then((response)=>{
+            navigate(-1)
+        }).catch((error)=>{
+            setError("Ошибка")
+        })
+
+    }
     return(<div className="newItemPage">
         <div className="ItemField">
             <input className="TitleInput" placeholder="Введите заголовок новости" onChange={e=>setTitle(e.target.value)} value={titleValue}></input>
@@ -58,7 +82,7 @@ function NewNews(){
             ))}
         </div>
         <div className="ItemField">
-            <button onClick={(e)=>{addCourse(e)}}>Опубликовать</button>
+            <button onClick={(e)=>{location.state == null?addCourse(e):editCourse(e)}}>Опубликовать</button>
             <div className="errorField">{newsError}</div>
         </div>
     </div>)

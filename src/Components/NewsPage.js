@@ -1,6 +1,8 @@
 import { useState } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
+import axios from "axios"
 function NewsPage(){
+    const navigate = useNavigate()
     const location = useLocation()
     const [currentNum, setCurrentNum] = useState(0)
     const setPreviosImage = () => {
@@ -12,6 +14,21 @@ function NewsPage(){
         if((currentNum + 1) < location.state.elem[3].length){
             setCurrentNum(currentNum + 1)
         }
+    }
+    const DelNews = (event) => {
+        event.preventDefault()
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/news/delete',
+            headers: {Authorization: localStorage.session_id},
+            params: {
+            id:location.state.elem[4]
+            }
+        }).then((response)=>{
+            navigate(-1)
+        }).catch((error)=>{
+            console.log(error)
+        })
     }
     return(<div className="sitePage" id="newsPage">
         <div id="newsPageBlock">
@@ -27,6 +44,10 @@ function NewsPage(){
                 {location.state.elem[1]}
             </div>
         </div>
+        {localStorage.role != "user"?<div id="NewsControlPanel">
+        <div className="NewsControlButton" id="NewsEditButton">Редактировать новость</div>
+        <div className="NewsControlButton" id="NewsDeleteButton" onClick={(e) =>{DelNews(e)}}>Удалить новость</div>
+        </div>:<></>}
     </div>)
 }
 

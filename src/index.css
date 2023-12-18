@@ -418,6 +418,7 @@ code {
 #newsPage{
   display: flex;
   justify-content: center;
+  flex-direction: row;
 }
 
 #newsPageBlock{
@@ -542,4 +543,29 @@ code {
   color: white;
   background-color: rgb(16, 16, 94);
   border: 1px solid white;
+}
+
+#NewsControlPanel{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  background-color: rgb(16, 16, 94);
+  color: white;
+  align-items: center;
+}
+
+.NewsControlButton{
+  width:85%;
+  height: auto;
+  background-color: rgb(16, 16, 94);
+  margin-top: 20px;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.NewsControlButton:hover{
+  color: rgb(16, 16, 94);
+  background-color: white;
+  cursor: pointer;
 }

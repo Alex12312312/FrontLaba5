@@ -9,8 +9,8 @@ function UserEdit(){
     const [userEmail, setUserEmail] = useState(location.state.user.email)
     const [userPassword, setUserPassword] = useState(location.state.user.password)
     const [userRole, setUserRole] = useState(location.state.user.role)
-    const [userEnterCount, setEnterCount] = useState(location.state.user.enterCounter)
     const [userAvatar, setUserAvatar] = useState(`data:image/${location.state.user.avatar[0]};base64,${location.state.user.avatar[1]}`)
+    const [errorField, setError] = useState("")
     const acceptChanges = (event) => {
         event.preventDefault()
         axios({
@@ -24,10 +24,11 @@ function UserEdit(){
             password: userPassword,
             role: userRole,
             login: userLogin,
-            enter_counter: userEnterCount,
             avatar: userAvatar}
         }).then((response) =>{
             navigate(-1)
+        }).catch((error)=>{
+            setError(error.response.data)
         })
     }
     const handleImageUpload = (event) =>{
@@ -48,8 +49,7 @@ function UserEdit(){
         <input accept="image/png, image/jpeg, image/gif, image/jpg" type="file" id="ChangeImageArea" onChange={(e) => {handleImageUpload(e)}}/>
         </div>
         <div id="DataPlace">
-            <div>ID пользователя: <input type="text" value={userID} onChange={(e) => {setUserId(e.target.value)}}></input></div>
-            <div>Количество посещений: <input type="number" value={userEnterCount} onChange={(e) => {setEnterCount(e.target.value)}}></input></div>
+            <div>ID пользователя: {userID}</div>
             <div>Роль: <select name="Role" defaultValue={userRole} onChange={(e)=>{setUserRole(e.target.value)}}>
                 <option value="user">Пользователь</option>
                 <option value="moderator">Модератор</option>
@@ -59,6 +59,7 @@ function UserEdit(){
             <div>email:<input type="text" value={userEmail} onChange={(e) => {setUserEmail(e.target.value)}}></input></div>
             <div>Пароль пользователя: <input type="text" value={userPassword} onChange={(e) => {setUserPassword(e.target.value)}}></input></div>
             <div id="AcceptChanges" onClick={(e)=>{acceptChanges(e)}}>Подтвердить изменения</div>
+            <div>{errorField}</div>
         </div>
         </div>
         </div>)

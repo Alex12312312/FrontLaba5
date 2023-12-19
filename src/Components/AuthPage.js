@@ -21,10 +21,10 @@ function Authpage(){
             localStorage.setItem('user_id', response.data.user_id)
             localStorage.setItem('user_role', response.data.role)
             setAuthStatus(true);
-            navigate("/")
+            navigate(-1)
         })
         .catch((error) =>{
-          setError(error)
+          setError(error.response.data)
         })
     };
 
@@ -34,6 +34,7 @@ function Authpage(){
         <div id="AuthPage" style={styles.Authpage}>
         <div id="AuthBlock">
         <div id="dataFields">
+        <div>Страница авторизации</div>
         <div className="authField" id="loginField" style={styles.headerButton}>
           <input placeholder="Login" onChange={val => setLogin(val.target.value)}/></div>
         <div className="authField" id="passwordField">
@@ -42,7 +43,7 @@ function Authpage(){
         <button id="EnterButton" onClick={(e)=>
           handleLogin(e)
         }>Войти</button>
-        <div id="ErrorField">{errMsg.message}</div>
+        <div id="ErrorField">{errMsg}</div>
         </div>
         </div>
         </div>:navigate("/")

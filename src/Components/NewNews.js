@@ -18,7 +18,6 @@ function NewNews(){
     reader.onload = () => {
         const base64 = reader.result;
         setFile(currentFiles => [...currentFiles,base64]);;
-        console.log(IMGfile)
       };
     }
     const addCourse = (event) =>{

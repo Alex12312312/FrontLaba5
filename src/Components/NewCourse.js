@@ -7,7 +7,7 @@ function NewCourse(){
     const [IMGfile, setFile] = useState((location.state != null)? location.state.imgs:null)
     const [titleValue, setTitle] = useState((location.state != null)? location.state.title:"")
     const [textValue, setText] = useState((location.state != null)? location.state.newsText:"")
-    const [idValue, setId] = useState((location.state != null)? location.state.newsId:"")
+    const [idValue, setId] = useState((location.state != null)? location.state.courseId:"")
     const [newsError, setError] = useState("")
     const addNewFile = (event) =>{
         const curfile = event;
@@ -34,7 +34,6 @@ function NewCourse(){
         })
     }
     const editCourse = (event) =>{
-        console.log(idValue)
         event.preventDefault()
         axios({
             method: 'post',

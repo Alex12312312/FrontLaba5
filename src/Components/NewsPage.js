@@ -27,7 +27,7 @@ function NewsPage(){
         }).then((response)=>{
             navigate(-1)
         }).catch((error)=>{
-            console.log(error)
+           
         })
     }
     return(<div className="sitePage" id="newsPage">
@@ -44,7 +44,7 @@ function NewsPage(){
                 {location.state.elem[1]}
             </div>
         </div>
-        {localStorage.role != "user"?<div id="NewsControlPanel">
+        {localStorage.user_role != "user"?<div id="NewsControlPanel">
         <Link className="NewsControlButton" id="NewsEditButton" to="/addNews"
          state={{elem:location.state.elem, newsNum: location.state.num}}>Редактировать новость</Link>
         <div className="NewsControlButton" id="NewsDeleteButton" onClick={(e) =>{DelNews(e)}}>Удалить новость</div>

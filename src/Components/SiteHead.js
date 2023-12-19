@@ -18,12 +18,14 @@ function SiteHead(){
         }).then((response) => {
             localStorage.session_id = -1
             localStorage.user_id = -1
+            localStorage.user_role = "user"
             setAuthStatus(false)
             navigate("/")
         }
         ).catch((error)=>{
             localStorage.session_id = -1
             localStorage.user_id = -1
+            localStorage.user_role = "user"
             setAuthStatus(false)
             navigate("/")
         })
